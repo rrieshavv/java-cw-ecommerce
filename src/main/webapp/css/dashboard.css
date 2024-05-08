@@ -168,3 +168,22 @@ textarea {
 .__text-success {
   color: #32a852;
 }
+.row {
+  display: flex;
+  gap: 2.25rem;
+}
+
+.__box-card {
+  border: 3px dashed green;
+  padding: 1.25rem;
+}
+.__box-card-body {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  font-size: 22px;
+}
+.__box-card-footer {
+  display: flex;
+  justify-content: end;
+}

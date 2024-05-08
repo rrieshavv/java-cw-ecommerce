@@ -23,7 +23,7 @@
 		<jsp:include page="/includes/header.jsp"></jsp:include>
     <div id="banner">
         <div class="middle-image">
-            <img src="${pageContext.request.contextPath}/assets/Logos/hikvisiontopimage.png" alt="Middle Image"> <!-- Middle image -->
+            <img src="${pageContext.request.contextPath}/assets/home_assets/hikvisiontopimage.png" alt="Middle Image"> <!-- Middle image -->
         </div>
         <div>
             <h1 class="big-heading">Hikvision <span style="color: #675CDB">Ds Series</span> Camera</h1> <!-- Main heading -->
@@ -32,7 +32,7 @@
                 <button class="shop-button">SHOP NOW</button> <!-- Shop button -->
                 <div>
                     <a href="#product-container" class="clickable-image"> <!-- Anchor tag to scroll to product container -->
-                        <img src="${pageContext.request.contextPath}/assets/Logos/downarrow.png" alt="Clickable Image" class="clickable-image"> <!-- Clickable image -->
+                        <img src="${pageContext.request.contextPath}/assets/home_assets/downarrow.png" alt="Clickable Image" class="clickable-image"> <!-- Clickable image -->
                     </a>
                 </div>
             </div>
@@ -61,7 +61,7 @@
 	   
 	    </form>
 	        
-            <img src="${pageContext.request.contextPath}/assets/Logos/filterimage.png" alt="Clickable Image" class="products-image" onclick="togglePopup()"> <!-- Filter image -->
+            <img src="${pageContext.request.contextPath}/assets/home_assets/filterimage.png" alt="Clickable Image" class="products-image" onclick="togglePopup()"> <!-- Filter image -->
  
     	</div>
     <div id="product-container" class="product-container">

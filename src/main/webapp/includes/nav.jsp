@@ -8,16 +8,12 @@
     <a href="<%= request.getContextPath() %>/admin/product">Manage Products</a>
 </div>
 <div class="__nav-link">
-    <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/about.png" />
-    <a href="/">About us page</a>
-</div>
-<div class="__nav-link">
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/messages.png" />
     <a href="<%= request.getContextPath() %>/admin/messages">Contact Messages</a>
 </div>
 <div class="__nav-link">
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/orders.png" />
-    <a href="/">Orders</a>
+    <a href="<%= request.getContextPath() %>/admin/orders">Orders</a>
 </div>
 <div class="__nav-link">
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/users.png" />
