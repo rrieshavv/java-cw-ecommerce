@@ -2,11 +2,11 @@ package utils;
 
 public enum PageURL {
 	LOGIN("/WEB-INF/view/auth/Login.jsp"),
-	USER("/WEB-INF/view/auth/User.jsp"),
+	USER("/WEB-INF/view/user/User.jsp"),
     DASHBOARD("/WEB-INF/view/admin/dashboard.jsp"),
     REGISTER("/WEB-INF/view/auth/Register.jsp"),
 	HOME("/WEB-INF/view/home/home.jsp"),
-	PRODUCT_DETAIL("/WEB-INF/view/home/Product_detail.jsp"),
+	PRODUCT_DETAIL("/WEB-INF/view/home/productDetail.jsp"),
 	ABOUT_US("/WEB-INF/view/home/AboutUs.jsp");
 	
 

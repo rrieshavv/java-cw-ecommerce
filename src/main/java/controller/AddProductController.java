@@ -102,6 +102,7 @@ public class AddProductController extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/view/admin/add-products.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("error",
 					"Invalid, incomplete or duplicate product information provided. Please try again!");
 			request.getRequestDispatcher("/WEB-INF/view/admin/add-products.jsp").forward(request, response);
@@ -120,7 +121,8 @@ public class AddProductController extends HttpServlet {
 
 	private String savePhoto(Part photoPart, String fileName) throws IOException {
 		// Saving the photo to the specified directory
-		String photoDirectory = "C:\\Users\\Bruger\\eclipse-workspace\\java-coursework\\src\\main\\webapp\\uploads\\product_images\\";
+		String photoDirectory = "D:\\Workshop\\java-cw-ecommerce\\src\\main\\webapp\\uploads\\product_images\\";
+		
 		String photoPath = photoDirectory + fileName;
 
 		// Ensuring the directory exists; create it if it doesn't

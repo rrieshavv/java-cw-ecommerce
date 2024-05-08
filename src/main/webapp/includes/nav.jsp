@@ -23,3 +23,7 @@
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/users.png" />
     <a href="/">Users</a>
 </div>
+<div class="__nav-link">
+    <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/users.png" />
+    <a href="<%= request.getContextPath() %>/Logout">Logout</a>
+</div>

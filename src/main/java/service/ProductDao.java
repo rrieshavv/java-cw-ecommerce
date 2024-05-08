@@ -18,10 +18,19 @@ public class ProductDao {
 	private PreparedStatement statement;
 	private ResultSet resultSet;
 	private boolean isSuccess;
+	private static ProductDao instance;
+
 	
 	public ProductDao() {
 		conn = DbConnection.getDbConnection();
 	}
+	  public static ProductDao getInstance() { // singleton design pattern for home controller
+	        if (instance == null) {
+	            instance = new ProductDao();
+	        }
+	        return instance;
+	    }
+	
 	
 	public boolean saveProduct(Product product) {
 		String query = "select * from products";
@@ -215,21 +224,24 @@ public class ProductDao {
 		return false;
 	}
 	
-	//anjeshhh product dao 
+	//!!!! anjesh product dao 
 	
 	 public List<Product> showAllproduct() throws SQLException, IOException{
 
-		List<Product> productEntity = new ArrayList<Product>();
-		 String query = "SELECT * FROM products";
-	        Connection connection = DbConnection.getDbConnection();
-	        PreparedStatement pstm = connection.prepareStatement(query);
-	        ResultSet rs = pstm.executeQuery();
-	        
-	        while (rs.next()) {
-	            Product product = setProductEntity(rs);
-	            productEntity.add(product);
-	        }
-	        connection.close();
+		 List<Product> productEntity = new ArrayList<Product>();
+		    String query = "SELECT * FROM products";
+		    
+		    try (
+		        Connection connection = DbConnection.getDbConnection();
+		        PreparedStatement pstm = connection.prepareStatement(query);
+		        ResultSet rs = pstm.executeQuery()
+		    ) {
+		        while (rs.next()) {
+		            Product product = setProductEntity(rs);
+		            productEntity.add(product);
+		        }
+		    }
+	     
 	        return productEntity;
 	    }
 		
@@ -248,7 +260,6 @@ public class ProductDao {
 			productEntity.add(product);
 		}
 		
-		connection.close();
 		return productEntity;		
 	}
 	
@@ -269,8 +280,7 @@ public class ProductDao {
            Product product = setProductEntity(rs);
 			productEntity.add(product);
 		}
-		
-		connection.close();
+	
 		return productEntity;
 	}
 	
@@ -279,17 +289,29 @@ public class ProductDao {
 		Product productEntity = new Product();
 		String query ="SELECT * FROM products where id=?";
 		
-		Connection connection = DbConnection.getDbConnection();
-		PreparedStatement pstm = connection.prepareStatement(query);
+        try (Connection connection = DbConnection.getDbConnection();
+                PreparedStatement pstm = connection.prepareStatement(query)) {
+               pstm.setInt(1, id);
+               
+               try (ResultSet rs = pstm.executeQuery()) {
+                   if (rs.next()) {
+                       productEntity = setProductEntity(rs);    
+                   }
+
+               }
+               
+               
+           } catch (SQLException e) {
+               e.printStackTrace();
+               // Handle exception, possibly rethrow or return null
+           }
+
+           
+        	
+    		conn.close();
+
+           return productEntity;
 		
-		pstm.setInt(1, id);
-		ResultSet rs = pstm.executeQuery();
-		
-		if (rs.next()) {
-			 productEntity = setProductEntity(rs);	
-		}
-		connection.close();
-		return productEntity;		
 	}
 	
 

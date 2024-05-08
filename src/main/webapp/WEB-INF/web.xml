@@ -4,4 +4,38 @@
   <welcome-file-list>
     <welcome-file>home</welcome-file>
   </welcome-file-list>
+  
+  	<filter>
+  		<filter-name>User_filter</filter-name>
+  		<filter-class>filters.UserFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>User_filter</filter-name>
+  		<url-pattern>/User</url-pattern>
+  		
+  	</filter-mapping>
+
+
+    <filter>
+  		<filter-name>Admin_filter</filter-name>
+  		<filter-class>filters.AdminFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>Admin_filter</filter-name>
+  		<url-pattern>/admin</url-pattern>
+  		<url-pattern>/admin/*</url-pattern>
+  		
+  	</filter-mapping>
+  	
+
+  	<filter>
+  		<filter-name>Home_filter</filter-name>
+  		<filter-class>filters.HomeFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>Home_filter</filter-name>
+  		<url-pattern>/home</url-pattern>
+  	</filter-mapping>
+  	
+  
 </web-app>

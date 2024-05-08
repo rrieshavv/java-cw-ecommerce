@@ -34,6 +34,7 @@ public class UserDao {
 
 		pstm.executeUpdate();
 		System.out.println(entity.getFirstname());
+		pstm.close();
 		connection.close();
 
 	}
@@ -60,7 +61,8 @@ public class UserDao {
 		if (row > 0) {
 			return entity;
 		}
-		
+		pstm.close();
+		connection.close();
 		return null;
 	}
 
@@ -97,6 +99,7 @@ public class UserDao {
 			user.setLoginresult("userNotFound");
 
 		}
+		rs.close();
 		pstm.close();
 		connection.close();
 		return user;

@@ -12,14 +12,15 @@ public class DbConnection {
 	static {
 		dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3131/java_ecommerce");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/java_ecommerce");  //Anjesh port
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("root");
 	}
 	
 	public static Connection getDbConnection() {
 		try {
 			conn = dataSource.getConnection();
+			conn.setAutoCommit(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

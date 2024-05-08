@@ -8,22 +8,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home Page</title>
+<title>Home pAge</title>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css"> 
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navbar.css" />
- 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-ZtnodjQi6r8FV/v8yNQz+F+GjH4d4MxLLFOK11F2HH6+O1SARw2z4ljVtR8px4z2wtbLE+Kf7sLXLZB9b/fYVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Link to Font Awesome for icons -->
  <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
  <script src="${pageContext.request.contextPath}/js/home.js" src="home.js"></script>
- 
 </head>
 <body>
 		<jsp:include page="/includes/header.jsp"></jsp:include>
     <div id="banner">
         <div class="middle-image">
-            <img src="${pageContext.request.contextPath}/assets/Logos/hikvisiontopimage.png" alt="Middle Image"> <!-- Middle image -->
+            <img src="${pageContext.request.contextPath}/uploads/product_images/hikvisiontopimage.png" alt="Middle Image"> <!-- Middle image -->
         </div>
         <div>
             <h1 class="big-heading">Hikvision <span style="color: #675CDB">Ds Series</span> Camera</h1> <!-- Main heading -->
@@ -32,7 +29,7 @@
                 <button class="shop-button">SHOP NOW</button> <!-- Shop button -->
                 <div>
                     <a href="#product-container" class="clickable-image"> <!-- Anchor tag to scroll to product container -->
-                        <img src="${pageContext.request.contextPath}/assets/Logos/downarrow.png" alt="Clickable Image" class="clickable-image"> <!-- Clickable image -->
+                        <img src="${pageContext.request.contextPath}/assets/icons/downarrow.png" alt="Clickable Image" class="clickable-image"> <!-- Clickable image -->
                     </a>
                 </div>
             </div>
@@ -42,7 +39,7 @@
     <div id="products">
         <span class="products-text">All Products</span> <!-- Text indicating all products -->
        
-       <form action="/Cctv/Home" method="get">
+       <form action="<%=request.getContextPath()%>/home" method="get">
        
 			<div id="popup" class="popup">
 			       <h2>Search by Price</h2>
@@ -61,16 +58,16 @@
 	   
 	    </form>
 	        
-            <img src="${pageContext.request.contextPath}/assets/Logos/filterimage.png" alt="Clickable Image" class="products-image" onclick="togglePopup()"> <!-- Filter image -->
+            <img src="${pageContext.request.contextPath}/assets/icons/filterimage.png" alt="Clickable Image" class="products-image" onclick="togglePopup()"> <!-- Filter image -->
  
     	</div>
     <div id="product-container" class="product-container">
     <c:forEach var="product" items="${productList}">
     
 	    	 <div class="product-card">
-	    <a href="Product_Details?product_ID=${product.id}" >
+	    <a href="${pageContext.request.contextPath}/ViewProductController?product_ID=${product.id}" >
 	         <div class="product-image">
-				<img src="<%= request.getContextPath()%>/uploads/product_images/<c:out value="${product.image}"></c:out>">
+				<img src="<%=request.getContextPath()%>/uploads/product_images/<c:out value="${product.image}"></c:out>">
 	         </div>
 	         <div class="product-details">
 	             <h3 class="product-name">${product.title} </h3> <!-- Product name -->

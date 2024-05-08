@@ -5,7 +5,7 @@
             <img src="${pageContext.request.contextPath}/assets/logo/logomain2.png"  alt="GigaCctv Logo" class="logo-main">
         </div>
         <div class="search_box">
-        <form id="searchForm" action="/Cctv/Home" method="get">
+        <form id="searchForm" action="${pageContext.request.contextPath}/home" method="get">
         		<input type="search" name="search_product" placeholder="Search here"></input>
         		<span class="fa fa-search" onclick="submitForm()"></span>
         </form>
@@ -24,7 +24,7 @@
             	<%}
             	else{
             	%>
-                    <li><a href="<%= request.getContextPath() %>/logout">Logout here</a></li>
+                    <li><a href="<%= request.getContextPath() %>/Logout">Logout here</a></li>
             	<%}
             
             %>

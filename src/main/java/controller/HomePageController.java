@@ -20,28 +20,26 @@ import utils.PageURL;
 @WebServlet(asyncSupported = true, urlPatterns = { "/home" })
 public class HomePageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
     public HomePageController() {
         super();
-        // TODO Auto-generated constructor stub
     }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+
 		String minPrice_S = request.getParameter("min-price"); 
 		String maxPrice_S =request.getParameter("max-price");
 		
-		
-		
 		String itemSearch=request.getParameter("search_product");
-		ProductDao productModel = new ProductDao();
+		ProductDao productModel = ProductDao.getInstance();
 		
 		if(minPrice_S!=null && maxPrice_S != null) {
 			try {
@@ -64,6 +62,7 @@ public class HomePageController extends HttpServlet {
 			try {
 				List<Product> productList = productModel.searchProduct(itemSearch);
 				request.setAttribute("productList", productList);
+				itemSearch=null;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
