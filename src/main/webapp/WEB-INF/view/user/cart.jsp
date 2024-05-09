@@ -14,38 +14,64 @@
 </head>
 
 <body>
-	<jsp:include page="/includes/header.jsp"></jsp:include>
+    <jsp:include page="/includes/header.jsp"></jsp:include>
     <div class="__cart-container">
         <div class="__cart-header">
             <h1 class="f-raleway">
                 Shopping Cart
             </h1>
         </div>
+        
+      <form action="<%=request.getContextPath()%>/OrdersController" method="post">
         <c:forEach var="products" items="${inCart}" varStatus="loop"> 
-        <div class="__cart-body">
-            <div class="__cart-item">
-				<div>${loop.index + 1}</div>
-                <img src="<%=request.getContextPath()%>/uploads/product_images/<c:out value="${products.image}"></c:out>">
-                <div>${products.modelNo}</div>
-                <div>${products.title}</div>
-                <div>
-                    <label>QTY</label>
-                    <input type="number" min="1" max="10" value="1">
-                </div>
-                <div>Price: Rs. ${products.discountedPrice}</div>
-                <div><a href="${pageContext.request.contextPath}/user/cart?product_ID=${products.id}" style="color: #ff4052">Delete Items</a></div>
+            <div class="__cart-body">
+                <div class="__cart-item">
+                    <div>${loop.index + 1}</div>
+                    <img src="<%=request.getContextPath()%>/uploads/product_images/<c:out value="${products.image}"></c:out>">
+                    <div>${products.modelNo}</div>
+                    <div>${products.title}</div>
+                    <div>
+                        <label for="quantity_${loop.index}">QTY</label>
+                        <input type="number" min="1" max="10" value="1" name="stocks[${loop.index}]" id="quantity${loop.index}" onchange="updateTotal(${loop.index}, ${products.discountedPrice})">
+                    </div>
+                    <div id="total${loop.index}" class="totalPrice">Total Price : Rs. ${products.discountedPrice}</div>
+                    
+                    <div><a href="${pageContext.request.contextPath}/user/cart?deleteCartID=${products.cartID}" style="color: #ff4052">Delete Items</a></div>
                 
+                <input type="text" name="title_${loop.index}" id="title_${loop.index}" value="">
+                 <input type="text" name="modelNo_${loop.index}" value="${products.modelNo}">
+        		<input type="text" name="title_${loop.index}" value="${products.title}">
+        		<input type="text" name="title_${loop.index}" value="${products.cartID}">
+								
+				        		
+        		
+        		
+        		
+                </div>
             </div>
-        </div>
         </c:forEach>
+     
         <div class="__cart-footer">
-            <div class="__cart-total">
-                Total: Rs.12,399
-            </div>
             <button>Confirm Order</button>
         </div>
+        </form>
+        
+        <script>
+    function updateTotal(index, price) {
+        var quantityInput = document.getElementById('quantity' + index);
+        var totalPriceElement = document.getElementById('total' + index);
+        var titleInput = document.getElementById('title_' + index); // Input field
+        
+        var quantity = parseInt(quantityInput.value);
+        var totalPrice = quantity * price;
+        totalPriceElement.textContent = 'Total Price : Rs. ' + totalPrice;
+        
+        titleInput.value = totalPrice;
+    }
+</script>
+        
+          
     </div>
-    
 </body>
 
 </html>

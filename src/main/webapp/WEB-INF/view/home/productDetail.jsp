@@ -61,7 +61,6 @@
 			            	if((User)session.getAttribute("user") != null){
 			            	%>
 			            		 <form action="<%=request.getContextPath()%>/ViewProductController" method="post">
-			            		 		<input placeholder="Qty" class="__qty-input" name="stockqnt" type="number" min="1" max="${productDetail.quantity}" value="1" />
 								 		<input type="hidden" value="${productDetail.id}" name="product_id">
 								 		<button class="__btn __btn-success __add-to-card-btn">Add to cart</button>
 								 </form>

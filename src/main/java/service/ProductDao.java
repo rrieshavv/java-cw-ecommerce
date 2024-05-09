@@ -350,6 +350,7 @@ public class ProductDao {
            } catch (SQLException e) {
                e.printStackTrace();
            }
+        
         return false;
 	}
 	
@@ -358,7 +359,7 @@ public List<Product> viewCart(int user_id) throws SQLException{
 		
 		List<Product>productEntity = new ArrayList<Product>();
 		 
-		String query = "SELECT products.Id, products.Image, products.ModelNo, products.Title, products.DiscountedPrice " +
+		String query = "SELECT cart.Id AS cartId ,products.Id, products.Image, products.ModelNo, products.Title, products.DiscountedPrice " +
 	               "FROM cart " +
 	               "JOIN products ON cart.ProductId = products.Id " +
 	               "WHERE cart.UserId = ?";
@@ -373,7 +374,7 @@ public List<Product> viewCart(int user_id) throws SQLException{
 
 		while(rs.next()) {
 			Product product = new Product();
-
+			product.setCartID(rs.getInt("cartId"));
 			product.setId(rs.getInt("Id"));
 	        product.setImage(rs.getString("Image"));
 	        product.setModelNo(rs.getString("ModelNo"));
@@ -386,6 +387,28 @@ public List<Product> viewCart(int user_id) throws SQLException{
 		connection.close();
 		return productEntity;
 	}
+
+public boolean deleteCartProduct(int cartID) {
+	// TODO Auto-generated method stub
+	String query = "delete from cart where Id=? ";
+	// under work
+	try {
+		statement = conn.prepareStatement(query);
+		statement.setInt(1, cartID);// hehhhhhhhhh
+
+		int row = statement.executeUpdate();
+		
+		if(row == 1) {
+            return true;
+        }
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return false;
+}
 	
 	
 	

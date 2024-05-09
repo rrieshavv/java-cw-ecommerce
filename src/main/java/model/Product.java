@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class Product {
+	private int cartID;
 	private int id;
 	private String title;
 	private String modelNo;
@@ -17,6 +18,14 @@ public class Product {
 	private LocalDateTime createdon ;
 	private LocalDateTime lastModified;
 	
+	
+	
+	public int getCartID() {
+		return cartID;
+	}
+	public void setCartID(int cartID) {
+		this.cartID = cartID;
+	}
 	public int getId() {
 		return id;
 	}

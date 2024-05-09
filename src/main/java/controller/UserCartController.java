@@ -39,44 +39,39 @@ public class UserCartController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    ProductDao productDao = ProductDao.getInstance();
-
-		HttpSession userS = request.getSession();
-		User user = (User)userS.getAttribute("user");
-		int userID = user.getuserId();
-		
+	    
 		try {
-			List<Product>cartProduct=productDao.viewCart(userID);
-			request.setAttribute("inCart", cartProduct);
+			//HttpSession userS = request.getSession();
+			//User user = (User)userS.getAttribute("user");
+			int cartID=Integer.parseInt(request.getParameter("deleteCartID"));
+            
+			ProductDao productDao = ProductDao.getInstance();
+			productDao.deleteCartProduct(cartID);
+			System.out.println("deleted");
+		} catch (NumberFormatException e) {
+			System.out.print("user not select cart at first");
+		}
+		finally {
 			
-			for (Product product : cartProduct) {
-				System.out.println(product.getTitle());
+			ProductDao productDao = ProductDao.getInstance();
+
+			HttpSession userS = request.getSession();
+			User user = (User)userS.getAttribute("user");
+			int userID = user.getuserId();
+			
+			try {
+				List<Product>cartProduct=productDao.viewCart(userID);
+				request.setAttribute("inCart", cartProduct);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
-		
-		
-
-		
-		
-		
-		
-		
         request.getRequestDispatcher(PageURL.CART.getUrl()).forward(request, response);
-
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		doGet(request, response);
-	}
+
 
 }

@@ -56,6 +56,8 @@ public class ViewProductController extends HttpServlet {
 		User user = (User) userS.getAttribute("user");
 		int product_id=Integer.parseInt(request.getParameter("product_id"));
 		int user_id =user.getuserId();
+		
+		
 		ProductDao productDao = new ProductDao();
 
 		try {		
