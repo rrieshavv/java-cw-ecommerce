@@ -19,7 +19,22 @@
             <li><a href="<%= request.getContextPath() %>/home">View Products</a></li>
              <li><a href="user">User</a></li>
             <li><a href="<%= request.getContextPath() %>/about-us">About us</a></li>
-              <%
+
+            <%
+            		User user = (User)session.getAttribute("user");
+            	if(user != null && user.getRoleId() == 1){
+            	%>
+                    <li><a href="<%= request.getContextPath() %>/user/cart">Cart</a></li>
+            	<%} 
+            %>
+            <%
+            	if((User)session.getAttribute("user") != null){
+            	%>
+					<li><a href="<%= request.getContextPath() %>/user/order">Orders</a></li>
+            	<%}
+            %>
+            
+                          <%
             	if((User)session.getAttribute("user") == null){
             	%>
                     <li><a href="<%= request.getContextPath() %>/login">Login here</a></li>
@@ -30,13 +45,10 @@
             	<%}
             
             %>
-            <%
-            		User user = (User)session.getAttribute("user");
-            	if(user != null && user.getRoleId() == 1){
-            	%>
-                    <li><a href="<%= request.getContextPath() %>/user/cart">Cart</a></li>
-            	<%} 
-            %>
+            	
+            
+                         
+            
             
         </ol>
     </nav>

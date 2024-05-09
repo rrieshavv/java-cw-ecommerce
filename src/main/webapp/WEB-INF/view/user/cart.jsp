@@ -22,7 +22,7 @@
             </h1>
         </div>
         
-      <form action="<%=request.getContextPath()%>/OrdersController" method="post">
+      <form action="<%=request.getContextPath()%>/user/order" method="post">
         <c:forEach var="products" items="${inCart}" varStatus="loop"> 
             <div class="__cart-body">
                 <div class="__cart-item">
@@ -38,10 +38,10 @@
                     
                     <div><a href="${pageContext.request.contextPath}/user/cart?deleteCartID=${products.cartID}" style="color: #ff4052">Delete Items</a></div>
                 
-                <input type="text" name="total_${loop.index}" id="total_${loop.index}" value="">
-                 <input type="text" name="product_${loop.index}"  value="${products.id}">
-        		<input type="text" name="title_${loop.index}" value="${products.title}">
-        		<input type="text" name="title_${loop.index}" value="${products.cartID}">
+                <input type="hidden" name="total_${loop.index}" id="total_${loop.index}" value="">
+                 <input type="hidden" name="product_${loop.index}"  value="${products.id}">
+        		<input type="hidden" name="title_${loop.index}" value="${products.title}">
+        		<input type="hidden" name="productID_${loop.index}" value="${products.cartID}">
 								
 				        		
         		

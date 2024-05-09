@@ -394,7 +394,7 @@ public boolean deleteCartProduct(int cartID) {
 	// under work
 	try {
 		statement = conn.prepareStatement(query);
-		statement.setInt(1, cartID);// hehhhhhhhhh
+		statement.setInt(1, cartID);
 
 		int row = statement.executeUpdate();
 		
@@ -409,7 +409,31 @@ public boolean deleteCartProduct(int cartID) {
 	
 	return false;
 }
+
+
+
+public boolean deleteAllCart(int userID) {
+	// TODO Auto-generated method stub
+	String query = "delete from cart where UserId=? ";
+	// under work
+	try {
+		statement = conn.prepareStatement(query);
+		statement.setInt(1, userID);
+
+		int row = statement.executeUpdate();
+		
+		if(row == 1) {
+            return true;
+        }
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
+	return false;
+}
+
 	
 	
 

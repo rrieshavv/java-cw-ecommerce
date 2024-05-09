@@ -52,7 +52,7 @@ body {
     background-color: white;
     color: black;
     padding: 40px;
-    width: 600px;
+    width: 500px;
     box-sizing: border-box; 
 }
 
@@ -61,8 +61,6 @@ h1 {
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
     margin-bottom: 15px;
 }
 

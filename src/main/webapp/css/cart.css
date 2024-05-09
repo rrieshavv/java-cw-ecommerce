@@ -55,3 +55,25 @@ img {
 	width: 100px;
 	height: 100px;
 }
+.__cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.__cart-table th, .__cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.__cart-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.__cart-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+th{
+	font-size:40px;
+	margin: 10px 20px;
+}

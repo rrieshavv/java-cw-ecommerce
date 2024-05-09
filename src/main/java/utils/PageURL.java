@@ -8,7 +8,9 @@ public enum PageURL {
 	HOME("/WEB-INF/view/home/home.jsp"),
 	PRODUCT_DETAIL("/WEB-INF/view/home/productDetail.jsp"),
 	ABOUT_US("/WEB-INF/view/home/AboutUs.jsp"),
-	CART("/WEB-INF/view/user/cart.jsp");
+	CART("/WEB-INF/view/user/cart.jsp"),
+	ORDER("/WEB-INF/view/user/orders.jsp"),
+	ADMIN_ORDERS("/WEB-INF/view/admin/Order.jsp");
 	
 
 	private final String url;

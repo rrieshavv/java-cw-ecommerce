@@ -52,7 +52,7 @@
 
         <div class="main-content">
             <h1>Profile Settings</h1>
-            <form action="User" method="post">
+            <form action="<%=request.getContextPath()%>/user" method="post">
                 <div class="row">
                     <!-- <div class="col">
                         <label for="id">ID</label>
