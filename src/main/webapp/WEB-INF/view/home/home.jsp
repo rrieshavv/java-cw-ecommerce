@@ -8,12 +8,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home pAge</title>
+<title>Home page</title>
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css"> 
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navbar.css" />
- <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
  <script src="${pageContext.request.contextPath}/js/home.js" src="home.js"></script>
 </head>
 <body>
@@ -78,10 +77,11 @@
 	             </c:if>
 	             </div>
 	        </div>
-	    </a>
-	         <div class="add-to-cart">
-	             <button class="add-to-cart-button">Add to Cart</button> <!-- Add to cart button -->
+	    
+	         <div class="add-to-cart" style="text-align: center;">
+	             <label class="add-to-cart-button">Shop now</lable> <!-- Add to cart button -->
 	         </div>
+	  </a>
      </div>
     
     </c:forEach>

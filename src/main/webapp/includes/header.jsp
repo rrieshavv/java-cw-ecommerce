@@ -1,5 +1,7 @@
 <%@page import="model.User"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/navbar.css"/>
+ <script src="https://kit.fontawesome.com/1165876da6.js" crossorigin="anonymous"></script>
+
 <nav>
         <div class="icon">
             <img src="${pageContext.request.contextPath}/assets/logo/logomain2.png"  alt="GigaCctv Logo" class="logo-main">
@@ -15,7 +17,7 @@
         <ol>
              <li><a href="<%= request.getContextPath() %>/home">Home</a></li>
             <li><a href="<%= request.getContextPath() %>/home">View Products</a></li>
-             <li><a href="User">User</a></li>
+             <li><a href="user">User</a></li>
             <li><a href="<%= request.getContextPath() %>/about-us">About us</a></li>
               <%
             	if((User)session.getAttribute("user") == null){
@@ -27,6 +29,13 @@
                     <li><a href="<%= request.getContextPath() %>/Logout">Logout here</a></li>
             	<%}
             
+            %>
+            <%
+            		User user = (User)session.getAttribute("user");
+            	if(user != null && user.getRoleId() == 1){
+            	%>
+                    <li><a href="<%= request.getContextPath() %>/user/cart">Cart</a></li>
+            	<%} 
             %>
             
         </ol>

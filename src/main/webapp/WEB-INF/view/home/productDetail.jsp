@@ -1,10 +1,11 @@
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${productDetail.title}</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/product-desc.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/global.css" />
@@ -54,51 +55,35 @@
                         </span>
                     </p>
                 </div>
-                <div class="__add-cart-form">
-                    <form method="post">
-                        <input placeholder="Qty" class="__qty-input" type="number" min="1" max="${productDetail.quantity}" value="1" />
-                        <button class="__btn __btn-success __add-to-card-btn">Add to cart</button>
-                    </form>
+                <div class="__add-cart-form" style="display: flex;">
+                   
+                         <%
+			            	if((User)session.getAttribute("user") != null){
+			            	%>
+			            		 <form action="<%=request.getContextPath()%>/ViewProductController" method="post">
+			            		 		<input placeholder="Qty" class="__qty-input" name="stockqnt" type="number" min="1" max="${productDetail.quantity}" value="1" />
+								 		<input type="hidden" value="${productDetail.id}" name="product_id">
+								 		<button class="__btn __btn-success __add-to-card-btn">Add to cart</button>
+								 </form>
+			            	<%}
+			            	else{
+			            	%>
+			                   <a class="__btn __btn-success __add-to-card-btn" style="background: #13A2D3;" href="<%=request.getContextPath()%>/login">Login to access</a>
+			            	<%}
+			            
+           				 %>
+                        
+                        
+                       
+                    
                 </div>
                 <br>
 				<p>Avaliable Stock  <strong style="color:black; font-weight: 800" >${productDetail.quantity}</strong></p>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="__footer-header">
-        </div>
-        <div class="__footer-title">
-            GIGA CCTV STORE
-        </div>
-        <div class="__footer-section">
+	<jsp:include page="/includes/footer.jsp"></jsp:include>
 
-            <div class="__footer-contact">
-                <div>
-                    <img src="../assets/icons/location.png" />
-                    <p>Kamalpokhari, Kathmandu</p>
-                </div>
-                <div>
-                    <img src="../assets/icons/email.png" />
-                    <p>+123-456-789</p>
-                </div>
-                <div>
-                    <img src="../assets/icons/phone-call.png" />
-                    <p>info@giga.com.np</p>
-                </div>
-            </div>
-
-            <div class="__footer-newsletter">
-                <div>
-                    Remain Updated
-                </div>
-                <div class="__footer-newsletter-input">
-                    <input placeholder="Email Address" type="email" />
-                    <button class="__btn __btn-orange">Sign Up</button>
-                </div>
-            </div>
-        </div>
-    </footer>
 
 
 </body>

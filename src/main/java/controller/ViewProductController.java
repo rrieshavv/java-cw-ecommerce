@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Product;
+import model.User;
 import service.ProductDao;
 import utils.PageURL;
 
@@ -35,8 +37,6 @@ public class ViewProductController extends HttpServlet {
 		try {		
 			
 			Product product = productModel.searchByID(product_ID);
-			System.out.println("after");
-
 			request.setAttribute("productDetail", product);
 			
 		} catch (SQLException e) {
@@ -50,7 +50,33 @@ public class ViewProductController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+		HttpSession userS = request.getSession();
+		User user = (User) userS.getAttribute("user");
+		int product_id=Integer.parseInt(request.getParameter("product_id"));
+		int user_id =user.getuserId();
+		ProductDao productDao = new ProductDao();
+
+		try {		
+			
+			Boolean productadded = productDao.addToCart(user_id, product_id);
+			
+			if(productadded) {
+				response.sendRedirect(request.getContextPath()+"/user/cart");
+			}
+			else {
+				request.getRequestDispatcher(PageURL.PRODUCT_DETAIL.getUrl()).forward(request, response);
+
+			}
+
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
 	}
 
 }

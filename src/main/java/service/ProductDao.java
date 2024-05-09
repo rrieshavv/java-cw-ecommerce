@@ -297,10 +297,8 @@ public class ProductDao {
                    if (rs.next()) {
                        productEntity = setProductEntity(rs);    
                    }
-
                }
-               
-               
+ 
            } catch (SQLException e) {
                e.printStackTrace();
                // Handle exception, possibly rethrow or return null
@@ -331,6 +329,62 @@ public class ProductDao {
 		
 		return product;
 		
+	}
+	
+	public Boolean addToCart(int user_id,int product_id) {
+		
+		String query ="INSERT INTO cart"
+				+ "(UserId,ProductId) "
+				+ "VALUES (?,?)";
+
+        try (Connection connection = DbConnection.getDbConnection();
+                PreparedStatement pstm = connection.prepareStatement(query)) {
+               pstm.setInt(1, user_id);
+               pstm.setInt(2, product_id);
+               
+                pstm.executeUpdate();
+                return true;
+
+           
+ 
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+        return false;
+	}
+	
+	
+public List<Product> viewCart(int user_id) throws SQLException{
+		
+		List<Product>productEntity = new ArrayList<Product>();
+		 
+		String query = "SELECT products.Id, products.Image, products.ModelNo, products.Title, products.DiscountedPrice " +
+	               "FROM cart " +
+	               "JOIN products ON cart.ProductId = products.Id " +
+	               "WHERE cart.UserId = ?";
+
+		
+		Connection connection = DbConnection.getDbConnection();
+		PreparedStatement pstm = connection.prepareStatement(query);
+		pstm.setInt(1, user_id);
+
+
+		ResultSet rs =pstm.executeQuery();
+
+		while(rs.next()) {
+			Product product = new Product();
+
+			product.setId(rs.getInt("Id"));
+	        product.setImage(rs.getString("Image"));
+	        product.setModelNo(rs.getString("ModelNo"));
+	        product.setTitle(rs.getString("Title"));
+	        product.setDiscountedPrice(rs.getDouble("DiscountedPrice"));
+			productEntity.add(product);
+		}
+		rs.close();
+		pstm.close();
+		connection.close();
+		return productEntity;
 	}
 	
 	

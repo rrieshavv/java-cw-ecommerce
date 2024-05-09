@@ -15,7 +15,7 @@ import service.UserDao;
 import utils.PageURL;
 
 // Futher implementation need to be done for this class
-@WebServlet(asyncSupported = true, urlPatterns = { "/User" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/user" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
