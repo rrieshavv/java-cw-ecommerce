@@ -35,9 +35,18 @@ public class OrdersController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        String[] stocks = request.getParameterValues("stocks");
-        
-        
+		for(int i=0; i<20; i++) {
+			String stocks = request.getParameter("stocks[" + i + "]");
+            String title = request.getParameter("title_" + i);
+            String product = request.getParameter("product_" + i);
+            String totalPrice = request.getParameter("total_" + i);
+            if(stocks==null) {
+            	break;
+            }
+            
+   		 	System.out.println("Product " + (i + 1) + " - Stocks: " + stocks + ", Title: " + title + ", Product ID: " + product + "" +" Total Price"+ totalPrice);
+
+		}
         
 		doGet(request, response);
 	}

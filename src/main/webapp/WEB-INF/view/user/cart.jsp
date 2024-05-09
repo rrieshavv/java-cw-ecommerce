@@ -32,14 +32,14 @@
                     <div>${products.title}</div>
                     <div>
                         <label for="quantity_${loop.index}">QTY</label>
-                        <input type="number" min="1" max="10" value="1" name="stocks[${loop.index}]" id="quantity${loop.index}" onchange="updateTotal(${loop.index}, ${products.discountedPrice})">
+                        <input type="number" min="1" max="10" value="0" name="stocks[${loop.index}]" id="quantity${loop.index}" onchange="updateTotal(${loop.index}, ${products.discountedPrice})">
                     </div>
                     <div id="total${loop.index}" class="totalPrice">Total Price : Rs. ${products.discountedPrice}</div>
                     
                     <div><a href="${pageContext.request.contextPath}/user/cart?deleteCartID=${products.cartID}" style="color: #ff4052">Delete Items</a></div>
                 
-                <input type="text" name="title_${loop.index}" id="title_${loop.index}" value="">
-                 <input type="text" name="modelNo_${loop.index}" value="${products.modelNo}">
+                <input type="text" name="total_${loop.index}" id="total_${loop.index}" value="">
+                 <input type="text" name="product_${loop.index}"  value="${products.id}">
         		<input type="text" name="title_${loop.index}" value="${products.title}">
         		<input type="text" name="title_${loop.index}" value="${products.cartID}">
 								
@@ -60,7 +60,8 @@
     function updateTotal(index, price) {
         var quantityInput = document.getElementById('quantity' + index);
         var totalPriceElement = document.getElementById('total' + index);
-        var titleInput = document.getElementById('title_' + index); // Input field
+        var titleInput = document.getElementById('total_' + index); // Input field
+        
         
         var quantity = parseInt(quantityInput.value);
         var totalPrice = quantity * price;
