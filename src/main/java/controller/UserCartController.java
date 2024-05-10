@@ -41,21 +41,20 @@ public class UserCartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 		try {
-			//HttpSession userS = request.getSession();
-			//User user = (User)userS.getAttribute("user");
-			int cartID=Integer.parseInt(request.getParameter("deleteCartID"));
-            
+			
+			
+			int cartID=Integer.parseInt(request.getParameter("deleteCartID"));      
 			ProductDao productDao = ProductDao.getInstance();
 			productDao.deleteCartProduct(cartID);
 			System.out.println("deleted");
 		} catch (NumberFormatException e) {
-			System.out.print("user not select cart at first");
+			System.out.print("user have no cart items");
 		}
 		finally {
 			
 			ProductDao productDao = ProductDao.getInstance();
 
-			HttpSession userS = request.getSession();
+	HttpSession userS = request.getSession();
 			User user = (User)userS.getAttribute("user");
 			int userID = user.getuserId();
 			
@@ -71,7 +70,6 @@ public class UserCartController extends HttpServlet {
 		
         request.getRequestDispatcher(PageURL.CART.getUrl()).forward(request, response);
 	}
-
 
 
 }

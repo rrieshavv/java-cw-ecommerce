@@ -13,11 +13,7 @@
 </div>
 <div class="__nav-link">
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/orders.png" />
-    <a href="/">Orders</a>
-</div>
-<div class="__nav-link">
-    <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/users.png" />
-    <a href="/">Users</a>
+    <a href="<%= request.getContextPath() %>/admin/orders">Orders</a>
 </div>
 <div class="__nav-link">
     <img class="__nav-icons" src="${pageContext.request.contextPath}/assets/icons/logout.png" />

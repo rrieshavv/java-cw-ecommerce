@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
@@ -50,10 +51,28 @@
                 </div>
             </div>
         </c:forEach>
+     	<%
+     		if(request.getAttribute("inCart") !=null && !((List)request.getAttribute("inCart")).isEmpty()){
+     			%>
+     			 <div class="__cart-footer">
+                 <button>Confirm Order</button>
+             	</div>
+     			<% 
+     			
+     		}
+     		else{
+     			%>
+     			<div style="display: flex; justify-content: center; flex-direction: row; text-align: center;" >
+					<img alt="" src="${pageContext.request.contextPath}/assets/icons/empty-cart.png" style="width: 50%; height: 100%">   
+     			</div>
+ 
+     			<% 
+     		}
+     	
+     	
+     	%>
      
-        <div class="__cart-footer">
-            <button>Confirm Order</button>
-        </div>
+       
         </form>
         
         <script>

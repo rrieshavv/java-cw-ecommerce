@@ -81,19 +81,19 @@ public class UserRegisterController extends HttpServlet {
 				int endIndexField = errorMessage.indexOf("'", startindeXField);
 				String duplicateEntryField = errorMessage.substring(startindeXField, endIndexField);
 				request.setAttribute("error", duplicateEntryField + " already existe choose another ");
-				doGet(request, response);// handle exception made by constraint violation
+				doGet(request, response);
 
 			}
 
 			catch (SQLException e) {
 				e.printStackTrace();
 				request.setAttribute("error", "something went wrong please try again later");
-				doGet(request, response);// handle unknown exception inside database scope
+				doGet(request, response);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 				request.setAttribute("error", "some thing went wrong try again");
-				doGet(request, response);// handle unknown exception outside of scope
+				doGet(request, response);
 			}
 
 		}

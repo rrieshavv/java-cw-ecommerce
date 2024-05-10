@@ -8,11 +8,12 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css"> 
+<jsp:include page="/includes/header.jsp"></jsp:include>
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/about.css" />
 </head>
 <body>
-<jsp:include page="/includes/header.jsp"></jsp:include>
 	<div class="container">
 	
 		<div class="contact_data">

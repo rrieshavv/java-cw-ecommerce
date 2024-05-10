@@ -44,7 +44,6 @@ public class UserController extends HttpServlet {
 		        userEntity.setGender(request.getParameter("gender"));
 		        userEntity.setAddress(request.getParameter("address")); 
 		        userEntity.setDob(request.getParameter("dob")); 
-				System.out.println("final call");
 				userModel.updateUser(userEntity);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

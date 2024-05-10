@@ -16,7 +16,7 @@
         </div>
         <ol>
              <li><a href="<%= request.getContextPath() %>/home">Home</a></li>
-             <li><a href="<%= request.getContextPath() %>user">User</a></li>
+             <li><a href="<%= request.getContextPath() %>/user">User</a></li>
             <li><a href="<%= request.getContextPath() %>/about-us">About us</a></li>
 
             <%

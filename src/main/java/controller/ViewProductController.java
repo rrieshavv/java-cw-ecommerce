@@ -58,7 +58,7 @@ public class ViewProductController extends HttpServlet {
 		int user_id =user.getuserId();
 		
 		
-		ProductDao productDao = new ProductDao();
+		ProductDao productDao = ProductDao.getInstance();
 
 		try {		
 			
@@ -74,7 +74,7 @@ public class ViewProductController extends HttpServlet {
 
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("Some thing went wrong ");
 			e.printStackTrace();
 		}
 

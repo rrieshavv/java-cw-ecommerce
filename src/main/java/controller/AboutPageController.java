@@ -47,20 +47,18 @@ public class AboutPageController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Messages msg = new Messages();
-		
+		System.out.println();
 		msg.setName(request.getParameter("name"));
 		msg.setEmail(request.getParameter("email"));
 		msg.setPhoneNumber(request.getParameter("phoneNumber"));
 		msg.setMessage(request.getParameter("message"));
-		
+
 		
 		if(msg.getName()==null || msg.getEmail()==null || msg.getMessage()==null || msg.getPhoneNumber()==null ) {
 			request.setAttribute("error", "Empty fields found!");
-			request.getRequestDispatcher(request.getContextPath() + "/about-us").forward(request, response);
+			request.getRequestDispatcher(request.getContextPath()+"/about-us").forward(request, response);
 		}
-		
 		try {
 			boolean success = dao.saveMessage(msg);
 			if(success) {
@@ -70,6 +68,8 @@ public class AboutPageController extends HttpServlet {
 				request.setAttribute("error", "Couldn't send your message. Please try again!");
 				request.getRequestDispatcher("/WEB-INF/view/home/about.jsp").forward(request, response);
 			}
+			System.out.println(success);
+
 		} catch (SQLException e) {
 			request.setAttribute("error", "Couldn't send your message. Please try again!");
 			request.getRequestDispatcher("/WEB-INF/view/home/about.jsp").forward(request, response);

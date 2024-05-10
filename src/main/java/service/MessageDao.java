@@ -25,11 +25,12 @@ public class MessageDao {
 		if (row > 0) {
 			isSuccess = true;
 		}
+		
 		return isSuccess;
 	}
 
 	public int insertMessage(Messages msg) throws SQLException {
-		String query = "INSERT INTO `messages`(`name`, `email`, `phoneNumber`, `message`) VALUES (?,?,?,?)";
+		String query = "INSERT INTO `messages`(`name`, `email`, `phoneNumber`, `message`,`date`, `time`) VALUES (?,?,?,?,CURRENT_DATE, CURRENT_TIME)";
 		statement = conn.prepareStatement(query);
 		statement.setString(1, msg.getName());
 		statement.setString(2, msg.getEmail());
