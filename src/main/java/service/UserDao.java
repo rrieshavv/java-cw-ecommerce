@@ -12,7 +12,6 @@ import utils.DbConnection;
 public class UserDao {
 	public void addUser(User entity) throws SQLException {
 
-		User user = null;
 		String query = "INSERT INTO `user`"
 				+ "( `FirstName`, `LastName`, `PhoneNumber`, `Username`, `Email`, `Address`, `Gender`, `DOB`, `Password`, `role_id`) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -28,7 +27,7 @@ public class UserDao {
 		pstm.setString(7, entity.getGender());
 		pstm.setString(8, entity.getDob());
 		System.out.println(entity.getFirstname());
-		pstm.setString(9, BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt(10)));
+		pstm.setString(9, BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt(10)));// encrypting user
 		System.out.println(entity.getFirstname());
 		pstm.setInt(10, 1);// role id is deafult for users 
 

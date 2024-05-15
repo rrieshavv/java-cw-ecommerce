@@ -37,7 +37,6 @@
 								<th>Message</th>
 								<th>Date</th>
 								<th>Time</th>
-								<th>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,7 +50,6 @@
 									<td><c:out value="${message.message}"></c:out></td>
 									<td><c:out value="${message.date}"></c:out></td>
 									<td><c:out value="${message.time}"></c:out></td>
-									<td><a class="__danger-link" href="">Delete</a></td>
 								</tr>
 								<c:set var="counter" value="${counter + 1}" />
 							</c:forEach>

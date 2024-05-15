@@ -15,28 +15,20 @@ import utils.PageURL;
 /**
  * Servlet implementation class UserLoginController
  */
+												
 @WebServlet(asyncSupported = true, urlPatterns = { "/login" })
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public UserLoginController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	     request.getRequestDispatcher(PageURL.LOGIN.getUrl()).forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Taking parameter for users when login and storing in this field
         String username = request.getParameter("Username_l");
@@ -48,7 +40,7 @@ public class UserLoginController extends HttpServlet {
 
         try {
         	// storing select query result in User which content getter and setters
-            User user = usermodel.loginUser(username, userpassword);
+            User user = usermodel.loginUser(username, userpassword);// dynamic method dispatch (run time polymorphism)
             int role = user.getRoleId();
             
 
@@ -57,27 +49,23 @@ public class UserLoginController extends HttpServlet {
             
             	//session object
             	HttpSession session = request.getSession();
-                 session.setAttribute("user", user);
-                 
-                 //setting session for 30 min
-                 session.setMaxInactiveInterval(1800);
-                 System.out.println(session);
-                 
-                 
-             
+                 session.setAttribute("user", user);// setting user details in session !!! user is used to get session data
+                 session.setMaxInactiveInterval(1800);//setting session for 30 min if user inactive for 30 min 
 
-           
+                 System.out.println(session);
+
               // role 1= user
               // role 2 = admin
                  
             	
                 if (role==1) {
                 	response.sendRedirect(request.getContextPath()+"/home");
-                  // for testing  request.getRequestDispatcher(PageURl.USER.getUrl()).forward(request, response);
+                	//redirect to /home page in role id is 1
+                	
                 } else {
                 	response.sendRedirect(request.getContextPath()+"/admin");
+                	//redirect to /admin page if role id is 2
 
-                    //request.getRequestDispatcher(PageURl.ADMIN.getUrl()).forward(request, response);
                 }
             } else if (user.getLoginresult().equals("passwordMismatch")) {
                 request.setAttribute("incorrect_password", "Password was incorrect");

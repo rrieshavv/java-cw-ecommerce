@@ -118,7 +118,7 @@
 						src="${pageContext.request.contextPath}/assets/our-team/rijan.jpg"
 						alt="team">
 					<h3>
-						Rijan Budhathoki <span>Full stack Developer</span>
+						Rijan Budhathoki <span>Designer/Developer</span>
 					</h3>
 					<div class="social-links">
 						<a href="#"><i class="fab fa-facebook-f"></i></a> <a href="#"><i

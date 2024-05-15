@@ -16,60 +16,63 @@ import model.User;
 import service.ProductDao;
 import utils.PageURL;
 
-/**
- * Servlet implementation class UserCartController
- */
 @WebServlet(asyncSupported = true, urlPatterns = { "/user/cart" })
 public class UserCartController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	
- 
-	
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public UserCartController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    
-		try {
-			
-			
-			int cartID=Integer.parseInt(request.getParameter("deleteCartID"));      
-			ProductDao productDao = ProductDao.getInstance();
-			productDao.deleteCartProduct(cartID);
-			System.out.println("deleted");
-		} catch (NumberFormatException e) {
-			System.out.print("user have no cart items");
-		}
-		finally {
-			
-			ProductDao productDao = ProductDao.getInstance();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
 
-	HttpSession userS = request.getSession();
-			User user = (User)userS.getAttribute("user");
-			int userID = user.getuserId();
-			
-			try {
-				List<Product>cartProduct=productDao.viewCart(userID);
-				request.setAttribute("inCart", cartProduct);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+    	
+    	try {
+            String cartID = request.getParameter("deleteCartID");
+            if (cartID != null) {
+                doDelete(request, response);
+                return; 
+            }
+
+           
+            ProductDao productDao = ProductDao.getInstance();
+            HttpSession userSession = request.getSession();
+            User user = (User) userSession.getAttribute("user");
+
+            if (user != null) {
+                int userID = user.getuserId();
+
+                try {
+                    List<Product> cartProduct = productDao.viewCart(userID);
+                    request.setAttribute("inCart", cartProduct);
+
+                } catch (SQLException e) {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    e.printStackTrace();
+                }
+            }
+
+            request.getRequestDispatcher(PageURL.CART.getUrl()).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+    }
 		
-        request.getRequestDispatcher(PageURL.CART.getUrl()).forward(request, response);
-	}
+ 
+    
 
-
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int cartID = Integer.parseInt(request.getParameter("deleteCartID"));
+            ProductDao productDao = ProductDao.getInstance();
+            productDao.deleteCartProduct(cartID);
+            
+            request.setAttribute("deleteSuccessMessage", "Product deleted successfully.");
+        } catch (NumberFormatException e) {
+            request.setAttribute("deleteErrorMessage", "Invalid cart ID provided. Please provide a valid integer.");
+        }
+        response.sendRedirect(request.getContextPath()+"/user/cart");
+    }
 }

@@ -21,40 +21,27 @@ import utils.PageURL;
 public class UserRegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public UserRegisterController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher(PageURL.REGISTER.getUrl()).forward(request, response);
+		request.getRequestDispatcher(PageURL.REGISTER.getUrl()).forward(request, response); // forward the request and response to register page
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		User user = new User();
-		UserDao userM = new UserDao();
-		String password = request.getParameter("Password");
-		String conformpassword = request.getParameter("confirmPassword");
+		User user = new User(); // creating instance user object 
+		UserDao userM = new UserDao(); // creating instance of userDao 
+		String password = request.getParameter("Password"); // getting data from frontend !!! by using name
+		String conformpassword = request.getParameter("confirmPassword");//''''
 
 		// checking password and conform password are same or not
 		if (!password.equals(conformpassword)) {
 			request.setAttribute("error", "password not match");
 			doGet(request, response);
-
+			// this condtion is use for password verification
 		}
 
 		else {
@@ -71,15 +58,16 @@ public class UserRegisterController extends HttpServlet {
 				user.setDob(request.getParameter("Date"));
 				user.setPassword(request.getParameter("Password"));
 				userM.addUser(user);
-
+				// display success message if register successful
 				request.setAttribute("success", "User registered successfully");
+				// calling do get method
 				doGet(request, response);
-			} catch (SQLIntegrityConstraintViolationException e) {
+			} catch (SQLIntegrityConstraintViolationException e) {// this execption occure when  Volitation occure in database constraint
 				String errorMessage = e.getMessage();
-				// taking out text from error message
-				int startindeXField = errorMessage.indexOf("users.") + "users.".length(); //
+				int startindeXField = errorMessage.indexOf("users.") + "users.".length(); // taking out text from error message from exception
+
 				int endIndexField = errorMessage.indexOf("'", startindeXField);
-				String duplicateEntryField = errorMessage.substring(startindeXField, endIndexField);
+				String duplicateEntryField = errorMessage.substring(startindeXField, endIndexField);// taking starting and ending index from error message
 				request.setAttribute("error", duplicateEntryField + " already existe choose another ");
 				doGet(request, response);
 

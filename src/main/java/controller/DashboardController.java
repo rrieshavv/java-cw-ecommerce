@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.User;
 import service.DashboardDao;
 
 /**
@@ -48,6 +50,8 @@ public class DashboardController extends HttpServlet {
 			int totalMessage = dao.getMessagesCount();
 			int totalPending = dao.getPendingOrderCount();
 			int totalDelivered = dao.getDeliveredOrderCount();
+			List<User> userlist = dao.getAllUsers();
+			request.setAttribute("listofusers", userlist);
 			request.setAttribute("totalProducts", totalProduct);
 			request.setAttribute("totalOrders", totalOrder);
 			request.setAttribute("totalMessages", totalMessage);

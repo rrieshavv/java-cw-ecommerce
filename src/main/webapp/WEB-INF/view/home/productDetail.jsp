@@ -14,6 +14,7 @@
 
 </head>
 <body>
+				<jsp:include page="/includes/header.jsp"></jsp:include>
 
 	    <div class="__detail-main">
         <div class="__detail-image-side">

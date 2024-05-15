@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +79,33 @@
 							<a href="<%= request.getContextPath() %>/admin/orders">Go to page</a>
 						</div>
 					</div>
+				</div>
+				<h1 style="margin-top: 2rem;">Users</h1>
+				<div>
+					<table class="__table" style="width: 70%; margin-top: 2rem;">
+						<thead>
+							<tr>
+								<th>Sn.</th>
+								<th>UserName</th>
+								<th>Email</th>
+								<th>Gender</th>
+								<th>Joined on</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:set var="counter" value="1" />
+							<c:forEach var="user" items="${listofusers}">
+								<tr>
+									<td><c:out value="${counter}" /></td>
+									<td><c:out value="${user.username}"></c:out></td>
+									<td><c:out value="${user.email}"></c:out></td>
+									<td><c:out value="${user.gender}"></c:out></td>
+									<td><c:out value="${user.joinedOn}"></c:out></td>
+								</tr>
+								<c:set var="counter" value="${counter + 1}" />
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

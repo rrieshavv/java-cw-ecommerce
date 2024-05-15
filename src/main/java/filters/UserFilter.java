@@ -49,7 +49,6 @@ public class UserFilter extends HttpFilter implements Filter {
 		
 		//if user is not null and role =1 it mean user is type user 
 		if(user != null && (user.getRoleId()==1))  {
-			System.out.println("User Login");
 			
 			//forward request for futher processing
 			chain.doFilter(request, response);

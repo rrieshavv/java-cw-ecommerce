@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -216,7 +217,12 @@ public class ProductDao {
 	            return true;
 	        }
 			
-		} catch (SQLException e) {
+		}catch (SQLIntegrityConstraintViolationException e) {
+			// TODO: handle exception
+			System.out.println("product is order by user");
+		}
+		
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

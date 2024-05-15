@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 public class User {
 	private int userId;
 	private String firstname;
@@ -10,8 +12,11 @@ public class User {
 	private String address;
 	private String gender;
 	private String password;
+
+
 	private String dob;
 	private String loginresult;
+	private Date JoinedOn;
 	private int roleId;
 	
 	public User() {
@@ -33,7 +38,13 @@ public class User {
 	}
 
 	
-	
+	public Date getJoinedOn() {
+		return JoinedOn;
+	}
+
+	public void setJoinedOn(Date joinedOn) {
+		JoinedOn = joinedOn;
+	}
 	public int getuserId() {
 		return userId;
 	}

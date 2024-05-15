@@ -78,7 +78,7 @@ public class OrdersController extends HttpServlet {
             int productID =Integer.parseInt(productIDStr);
             int totalPrice =Integer.parseInt(totalPriceStr);
             
-            order.addUserOrder(userID,productID,qnt,totalPrice,"null");
+            order.addUserOrder(userID,productID,qnt,totalPrice,"Pending");
             
 		}
 		ProductDao product = new ProductDao();

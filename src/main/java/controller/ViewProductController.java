@@ -32,7 +32,6 @@ public class ViewProductController extends HttpServlet {
 		 
 		int product_ID =Integer.parseInt(request.getParameter("product_ID"));
 		ProductDao productModel = new ProductDao();
-		System.out.println("Before");
 
 		try {		
 			

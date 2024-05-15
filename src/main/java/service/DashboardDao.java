@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import model.User;
 import utils.DbConnection;
 
 public class DashboardDao {
@@ -69,5 +72,24 @@ public class DashboardDao {
 			count = resultSet.getInt(1);
 		}
 		return count;
+	}
+	
+	public List<User> getAllUsers() throws SQLException{
+		String query  = "Select * from user where role_id=1";
+		statement = conn.prepareStatement(query);
+		resultSet = statement.executeQuery();
+		
+		List<User> userlist = new ArrayList<User>();
+		
+		while(resultSet.next()){
+			User obj = new User();
+			obj.setUsername(resultSet.getString("Username"));
+			obj.setEmail(resultSet.getString("Email"));
+			obj.setGender(resultSet.getString("Gender"));
+			obj.setJoinedOn(resultSet.getDate("CreatedOn"));
+			userlist.add(obj);
+		}
+		
+		return userlist;
 	}
 }

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import model.User;
-import service.UserDao;
 import utils.PageURL;
 
 /**
@@ -46,8 +45,6 @@ public class AdminFilter extends HttpFilter implements Filter {
 				
 				//if user is not null and role =1 it mean user is type user 
 				if(user != null && user.getRoleId()==2) {
-					System.out.println("Admin Login");
-					
 					//forward request for futher processing
 					chain.doFilter(request, response);
 				}
